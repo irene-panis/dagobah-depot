@@ -1,0 +1,2 @@
+DROP DATABASE IF EXISTS iconic_db;
+CREATE DATABASE iconic_db;
