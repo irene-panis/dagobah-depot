@@ -1,0 +1,20 @@
+{
+  "name": "dagobah-depot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/irene-panis/dagobah-depot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/irene-panis/dagobah-depot/issues"
+  },
+  "homepage": "https://github.com/irene-panis/dagobah-depot#readme"
+}
