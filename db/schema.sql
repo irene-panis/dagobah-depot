@@ -1,2 +1,2 @@
-DROP DATABASE IF EXISTS iconic_db;
-CREATE DATABASE iconic_db;
+DROP DATABASE IF EXISTS dagobah_db;
+CREATE DATABASE dagobah_db;
