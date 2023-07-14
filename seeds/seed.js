@@ -1,10 +1,11 @@
 const sequlize = require('../config/connection');
 const { User, Project } = require('../models');
+const projectData = require('path');
 
 // requires the userData Json
 const userData = require('');
 // requires the projectData Json
-const projectData = require('');
+const projectData = require(path.join(__dirname, 'projectData.JSON'));
 
 const seedDatabase = async () => {
     await sequlize.sync({ force: true });

@@ -7,10 +7,7 @@ const sequelize = require('./config/connection');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-<<<<<<< HEAD
 
-=======
->>>>>>> 317d10b644ac78d8d7fc2f983267005957795fb7
 
 /*
 const sequelizeStore = require('connect-session-sequelize')(session.store);
