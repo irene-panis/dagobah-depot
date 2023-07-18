@@ -1,16 +1,16 @@
 const sequelize = require('../config/connection');
-const seedCategory = require('./categoryData');
-const seedListing = require('./listingData');
-const seedUser = require('./userData');
+const seedCategories = require('./categoryData');
+const seedListings = require('./listingData');
+const seedUsers = require('./userData');
 
 const seedAll = async () => {
   await sequelize.sync({ force: true });
 
-  await seedCategory();
+  await seedCategories();
 
-  await seedListing();
+  await seedListings();
 
-  await seedUser();
+  await seedUsers();
 
   process.exit(0);
 };
