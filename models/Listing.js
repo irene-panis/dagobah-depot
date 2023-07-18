@@ -1,10 +1,9 @@
 const { Model, DataTypes } = require('sequelize');
-//requires squelize from the connection folder
-const sequelize = require('../config/connection');
+const sequelize = require('..config/connection');
 
-class Project extends Model {}
+class Listing extends Model {}
 
-Project.init(
+Listing.init(
   {
     id: {
       type: DataTypes.INTEGER,
@@ -14,35 +13,46 @@ Project.init(
     },
     name: {
       type: DataTypes.STRING,
-      allowNull: false,
+      allowNull: false
     },
     description: {
       type: DataTypes.STRING,
+      allowNull: false,
     },
-    date_created: {
+    price: {
+      type: DataTypes.DECIMAL(5, 2),
+      allowNull: false,
+    },
+    upload_date: {
       type: DataTypes.DATE,
       allowNull: false,
-      defaultValue: DataTypes.NOW,
+      defaultValue: DataTypes.NOW
     },
-    needed_funding: {
-      type: DataTypes.FLOAT,
+    image_url: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
-    user_id: {
+    seller_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'user',
-        key: 'id',
+        key: 'id'
+      },
+    },
+    category_id: {
+      type: DataTypes.INTEGER,
+      references: {
+        model: 'category',
+        key: 'id,'
       },
     },
   },
   {
     sequelize,
-    timestamps: false,
     freezeTableName: true,
     underscored: true,
-    modelName: 'project',
+    modelName: 'listing',
   }
 );
 
-module.exports = Project;
+module.exports = Listing;
