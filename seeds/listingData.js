@@ -2,12 +2,12 @@ const { Listing } = require('../models');
 
 const listings = [
   {
-    listing_name: 'Boba Fett Volcano Button-Up',
+    name: 'Boba Fett Volcano Button-Up',
     description: 'Boba Fett is the galaxy\'s most merciless bounty hunter. But he might show you some mercy if he sees you wearing this Boba Fett button-up inspired by the Star Wars villain. With a Japanese-style volcano allover print, this shirt may prevent any future disintegrations.',
     upload_date: '07-13-2023',
     price: '13.20',
     category_id: 1,
-    seller: 'Luke Skywalker',
+    seller_id: 1,
   },
   {
     listing_name: 'Star Wars Jedi: Survivor - PlayStation 5',
@@ -15,7 +15,7 @@ const listings = [
     upload_date: '07-13-2023',
     price: '54.99',
     category_id: 2,
-    seller: 'George Lucas',
+    seller_id: 2,
   },
   {
     listing_name: 'Star Wars: The Empire Strikes Back [Blu-ray]',
@@ -23,7 +23,7 @@ const listings = [
     upload_date: '07-13-2023',
     price: '18.99',
     category_id: 3,
-    seller: 'Obi-Wan Kenobi',
+    seller_id: 3,
   },
   {
     listing_name: 'STAR WARS #1 (1977, Marvel Comics, 1st printing) CGC 9.8 White Pages',
@@ -31,7 +31,7 @@ const listings = [
     upload_date: '07-13-2023',
     price: '9,995.00',
     category_id: 4,
-    seller: 'Han Solo',
+    seller_id: 3,
   },
 ];
 
