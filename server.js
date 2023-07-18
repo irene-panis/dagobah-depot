@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
+const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY)
 
 import '@stripe/stripe-js';
 
@@ -9,7 +10,6 @@ const sequelize = require('./config/connection');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
-
 
 const sequelizeStore = require('connect-session-sequelize')(session.store);
 const sess = {
