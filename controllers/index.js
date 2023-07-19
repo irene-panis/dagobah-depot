@@ -1,11 +1,11 @@
 const router = require('express').Router();
 
-// const apiRoutes = require('./api');
-// router.use('/api', apiRoutes);
+const apiRoutes = require('./api');
+const projectRoutes = require('./projectRoutes.js');
+const homeRoutes = require('./homeRoutes.js');
 
-// placeholder so we can get heroku to work - we can build up from this
-router.get('/', async (req, res) => {
-  res.render('homepage');
-});
+router.use('/', homeRoutes);
+router.use('/', projectRoutes);
+router.use('/api', apiRoutes);
 
 module.exports = router;
