@@ -42,4 +42,10 @@ router.get('/signup', async (req, res) => {
   res.render('signup');
 });
 
+// renders checkout page
+// we can add to this request if we need more stuff on checkout page
+router.get('/checkout', async (req, res) => {
+  res.render('checkout');
+});
+
 module.exports = router;
