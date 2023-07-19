@@ -1,5 +1,5 @@
 const { Model, DataTypes } = require('sequelize');
-const sequelize = require('..config/connection');
+const sequelize = require('../config/connection');
 
 class Listing extends Model {}
 
@@ -16,7 +16,7 @@ Listing.init(
       allowNull: false
     },
     description: {
-      type: DataTypes.STRING,
+      type: DataTypes.TEXT,
       allowNull: false,
     },
     price: {
@@ -27,10 +27,6 @@ Listing.init(
       type: DataTypes.DATE,
       allowNull: false,
       defaultValue: DataTypes.NOW
-    },
-    image_url: {
-      type: DataTypes.STRING,
-      allowNull: false,
     },
     seller_id: {
       type: DataTypes.INTEGER,
@@ -43,7 +39,7 @@ Listing.init(
       type: DataTypes.INTEGER,
       references: {
         model: 'category',
-        key: 'id,'
+        key: 'id'
       },
     },
   },
