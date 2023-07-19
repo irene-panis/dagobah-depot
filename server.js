@@ -73,6 +73,7 @@ app.use(session(sess));
 */
 
 app.use(express.urlencoded({ extended: true }));
+app.use(express.static('public'));
 
 app.use(routes);
 
