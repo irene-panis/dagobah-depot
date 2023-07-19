@@ -8,11 +8,11 @@ const routes = require('./controllers');
 const cors = require('cors');
 app.use(express.json());
 app.listen(3001, () => {
-    console.log('server started on port 3001')
+    console.log('Is UAV Online')
 })
 //im allowing the server 5500 to be read on my local host
 app.use(cors({
-    origin: 'http://localhost:5500'
+    origin: 'http://127.0.0.1:5500'
 }))
 app.use(express.static("testing_materials"))
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
