@@ -101,7 +101,10 @@ router.get('/category/:id', async (req, res) => {
       },
       include: [
         {
-          model: { User, Category },
+          model: User,
+        },
+        {
+          model: Category,
         },
       ],
     });
