@@ -15,7 +15,6 @@ router.get('/', async (req, res) => {
       listing.get({ plain: true })
     );
     listings.reverse(); // so we can see most recent listing first
-    console.log(listings);
     res.render('homepage', {
       listings
     });
