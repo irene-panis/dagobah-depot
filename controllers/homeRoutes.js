@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { Listing, User } = require('../models');
+const { Listing, User, Category } = require('../models');
 
 // homepage listing products - not sure if we're listing everything on homepage?
 router.get('/', async (req, res) => {
@@ -68,6 +68,54 @@ router.get('/profile', async (req, res) => {
       logged_in: req.session.logged_in,
     });
   } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+// get one listing
+router.get('/listings/:id', async (req, res) => {
+  try {
+    const dbListingData = await Listing.findByPk(req.params.id, {
+      include: [
+        {
+          model: User,
+        },
+      ],   
+    });
+    const listing = dbListingData.get({ plain: true });
+    res.render('postedItems', { // individual product page
+      listing,
+      user_id: req.session.user_id,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
+router.get('/category/:id', async (req, res) => {
+  try {
+    const dbCategoryData = await Listing.findAll({
+      where: {
+        category_id: req.params.id,
+      },
+      include: [
+        {
+          model: User,
+        },
+      ],
+    });
+    const listings = dbCategoryData.map((listing) => 
+      listing.get({ plain: true })
+    );
+    listings.reverse();
+    res.render('category', {
+      listings,
+      user_id: req.session.user_id,
+      logged_in: req.session.logged_in
+    });
+  } catch (err) {
+    console.log(err);
     res.status(500).json(err);
   }
 });
