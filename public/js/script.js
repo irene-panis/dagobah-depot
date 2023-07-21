@@ -18,8 +18,14 @@ button.addEventListener("click", () => {
         return res.json().then(json => Promise.reject(json))
     }).then(({ url }) => {
         console.log(url)
-        window.location = url
+        window.location = url; // Redirects the user to the stripe checkout page 
+
+        if (url.includes('https://dagobah-depot-34081fe1df5e.herokuapp.com/checkout')) {
+          window.location = 'https://dagobah-depot-34081fe1df5e.herokuapp.com/checkout';
+        }
     }).catch(e => {
         console.error(e.error)
     })
 })
+
+
