@@ -8,6 +8,8 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/jass.css">
     <link rel="stylesheet" href="css/slider.css">
+    <link rel="stylesheet" href="css/dropdown.css">
+    <link rel="stylesheet" href="css/navbar.css">
 </head>
 
 <body class="light">
@@ -17,17 +19,21 @@
         <button class="no-button" onclick="theForce()"><img src="/images/Dagobah.jpg" alt="Dagobah" width="100" height="100"></button>
         <a href="/">Dagobah Depot</a>
       </h1>
-      <nav>
         <!-- Conditionally render login or logout links -->
-        {{#if logged_in}}
-        <a href="/profile">Profile</a> |
-        <a href="/checkout">Checkout</a> |
-        <button class="no-button" id="logout">Logout</button>
-        {{else}}
-        <a href="/login">Login</a> |
-        <a href="/signup">Sign Up</a> |
-        {{/if}}
-      </nav>
+<div class="nav">
+        <label for="toggle" class="navi">&#9776;</label>
+        <input type="checkbox" id="toggle"/>
+        <div class="menu">
+          {{#if logged_in}}
+            <a href="/profile">Profile</a> 
+            <a href="/checkout">Checkout</a> 
+            <button class="no-button" id="logout">Logout</button>
+          {{else}}
+            <a href="/login">Login</a> 
+            <a href="/signup">Sign Up</a> 
+          {{/if}}
+        </div>
+    </div>
     </header>
     <main class="container container-fluid mt-5">
       <!-- Render the sub layout -->
