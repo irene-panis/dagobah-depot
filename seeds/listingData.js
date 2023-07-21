@@ -35,6 +35,6 @@ const listings = [
   },
 ];
 
-const seedListings = () => Listing.bulkCreate(listings);
+const seedListings = () => Listing.bulkCreate(listings, { individualHooks: true });
 
 module.exports = seedListings;
