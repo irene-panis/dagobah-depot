@@ -8,7 +8,8 @@ router.post('/signup', async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
-      res.redirect('/');
+      req.session.name = userData.name;
+      res.redirect('/profile');
     });
   } catch (err) {
     if (err.name === 'SequelizeUniqueConstraintError') {
@@ -42,8 +43,9 @@ router.post("/login", async (req, res) => {
     req.session.save(() => {
       req.session.user_id = userData.id;
       req.session.logged_in = true;
+      req.session.name = userData.name;
 
-      res.redirect('/');
+      res.redirect('/profile');
     });
   } catch (err) {
     console.log(err);
@@ -55,6 +57,7 @@ router.post('/logout', (req, res) => {
   if (req.session.logged_in) {
     req.session.destroy(() => {
       res.status(204).end();
+      res.redirect('/');
     });
   } else {
     res.status(404).end();
