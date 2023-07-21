@@ -47,4 +47,24 @@ router.get('/checkout', async (req, res) => {
   res.render('checkout');
 });
 
+router.get('/profile', async (req, res) => {
+  try {
+    const dbListingData = await Listing.findAll({
+      where: {
+        seller_id: req.session.user_id,
+      }
+    });
+    const listings = dbListingData.map((listing) =>
+      listing.get({ plain: true })
+    );
+    listings.reverse(); // so we can see most recent listing first
+    res.render('profile', {
+      listings,
+      name: req.session.name,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 module.exports = router;
