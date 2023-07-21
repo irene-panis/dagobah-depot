@@ -50,6 +50,9 @@ router.get('/checkout', async (req, res) => {
 
 router.get('/profile', async (req, res) => {
   try {
+    if (!req.session.logged_in) {
+      res.redirect('/'); // redirects to homepage if not logged in
+    }
     const dbListingData = await Listing.findAll({
       where: {
         seller_id: req.session.user_id,
