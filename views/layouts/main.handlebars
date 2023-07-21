@@ -19,10 +19,13 @@
       <nav>
         <!-- Conditionally render login or logout links -->
         {{#if logged_in}}
-        <a href="/profile">Profile</a> |
+        <a href="/profile">Profile</a>
+        <a href="/checkout">Checkout</a> |
         <button class="no-button" id="logout">Logout</button>
         {{else}}
         <a href="/login">Login</a>
+        {{!-- added checkout here for testing before login route is connected --}}
+        <a href="/checkout">Checkout</a> |
         {{/if}}
       </nav>
     </header>
