@@ -15,7 +15,6 @@ router.get('/', async (req, res) => {
       listing.get({ plain: true })
     );
     listings.reverse(); // so we can see most recent listing first
-    console.log(listings);
     res.render('homepage', {
       listings
     });
@@ -40,6 +39,32 @@ router.get('/signup', async (req, res) => {
     return;
   }
   res.render('signup');
+});
+
+// renders checkout page
+// we can add to this request if we need more stuff on checkout page
+router.get('/checkout', async (req, res) => {
+  res.render('checkout');
+});
+
+router.get('/profile', async (req, res) => {
+  try {
+    const dbListingData = await Listing.findAll({
+      where: {
+        seller_id: req.session.user_id,
+      }
+    });
+    const listings = dbListingData.map((listing) =>
+      listing.get({ plain: true })
+    );
+    listings.reverse(); // so we can see most recent listing first
+    res.render('profile', {
+      listings,
+      name: req.session.name,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
 });
 
 module.exports = router;

@@ -13,7 +13,7 @@
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
       <h1>
-        <span role="img" aria-label="money">˗ˏˋ ★ ˎˊ˗</span>
+        <button class="no-button" onclick="theForce()"><img src="/images/Dagobah.jpg" alt="Dagobah" width="100" height="100"></button>
         <a href="/">Dagobah Depot</a>
       </h1>
       <nav>
@@ -23,9 +23,9 @@
         <a href="/checkout">Checkout</a> |
         <button class="no-button" id="logout">Logout</button>
         {{else}}
-        <a href="/login">Login</a>
+        <a href="/login">Login</a> |
         {{!-- added checkout here for testing before login route is connected --}}
-        <a href="/checkout">Checkout</a> |
+        {{!-- <a href="/checkout">Checkout</a> | --}}
         {{/if}}
       </nav>
     </header>
@@ -37,7 +37,7 @@
       {{/each}}
     </main>
     <footer>
-      
+
     </footer>
   </div>
 
@@ -45,6 +45,13 @@
   {{#if logged_in}}
   <script src="../public/js/logout.js"></script>
   {{/if}}
+  {{!-- darkmode switch --}}
+  <script>
+  function theForce() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+</script>
 </body>
 
 </html>
