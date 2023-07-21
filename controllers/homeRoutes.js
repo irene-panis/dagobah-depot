@@ -16,7 +16,8 @@ router.get('/', async (req, res) => {
     );
     listings.reverse(); // so we can see most recent listing first
     res.render('homepage', {
-      listings
+      listings,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
@@ -25,7 +26,7 @@ router.get('/', async (req, res) => {
 
 // renders login page
 router.get('/login', async (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     res.redirect('/');
     return;
   }
@@ -34,7 +35,7 @@ router.get('/login', async (req, res) => {
 
 // renders signup page
 router.get('/signup', async (req, res) => {
-  if (req.session.loggedIn) {
+  if (req.session.logged_in) {
     res.redirect('/');
     return;
   }
@@ -49,6 +50,9 @@ router.get('/checkout', async (req, res) => {
 
 router.get('/profile', async (req, res) => {
   try {
+    if (!req.session.logged_in) {
+      res.redirect('/'); // redirects to homepage if not logged in
+    }
     const dbListingData = await Listing.findAll({
       where: {
         seller_id: req.session.user_id,
