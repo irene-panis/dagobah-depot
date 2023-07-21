@@ -65,6 +65,7 @@ router.get('/profile', async (req, res) => {
     res.render('profile', {
       listings,
       name: req.session.name,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
