@@ -7,9 +7,10 @@
   <title>Dagobah Depot</title>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/jass.css">
+    <link rel="stylesheet" href="css/slider.css">
 </head>
 
-<body>
+<body class="light">
   <div class="flex-column justify-space-around">
     <header class="display-flex justify-space-between align-center p-2">
       <h1>
@@ -38,21 +39,26 @@
       {{/each}}
     </main>
     <footer>
-
+<div class="toggle-switch">
+        <p>Dark Side</p>
+        <span>
+            <label class="switch">
+                <input id="theme-switch" type="checkbox">
+                <span class="slider round"></span>
+            </label>
+        </span>
+        <p>Light Side</p>
+    </div>
     </footer>
   </div>
 
   <!-- Render script for logged in users only -->
   {{#if logged_in}}
-  <script src="../public/js/logout.js"></script>
+  <script src="js/logout.js"></script>
   {{/if}}
   {{!-- darkmode switch --}}
-  <script>
-  function theForce() {
-   var element = document.body;
-   element.classList.toggle("dark-mode");
-}
-</script>
+  <script src="js/darkmode.js"></script>
+
 </body>
 
 </html>

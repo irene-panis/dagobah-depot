@@ -25,14 +25,28 @@ header, .project:not(:last-child) {
 
 /*  */
 
-body {
-  padding: 25px;
-  background-color: white;
-  color: black;
-  font-size: 25px;
+.dark {
+  --main-background: hsl(230, 17%, 14%);
+  --main-font: white;
+  color: white;
 }
 
-.dark-mode {
-  background-color: black;
-  color: white;
+.light {
+  --main-background: white;
+  --main-font: hsl(230, 17%, 14%);
+}
+
+body {
+  background: var(--main-background);
+  color: var(--main-font);
+}
+
+.toggle-switch {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.toggle-switch p {
+  padding: 1em;
 }
