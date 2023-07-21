@@ -19,6 +19,7 @@ router.post('/post', async (req, res) => {
 // delete item NOT WORKING RN
 router.delete('/:id', async (req, res) => {
   try {
+    console.log("delete request attempted");
     const listingData = await Listing.destroy({
       where: {
         id: req.params.id, 
@@ -30,8 +31,7 @@ router.delete('/:id', async (req, res) => {
       res.status(404).json({ message: 'No listing found with this id!' });
       return;
     }
-
-    res.redirect('/profile');
+    res.status(200).send(); // send ok status from server so js can refresh page
   } catch (err) {
     res.status(500).json(err);
   }
