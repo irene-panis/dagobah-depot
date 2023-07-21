@@ -49,6 +49,7 @@ router.get('/checkout', async (req, res) => {
 });
 
 router.get('/profile', async (req, res) => {
+  console.log(req.session.logged_in);
   try {
     if (!req.session.logged_in) {
       res.redirect('/'); // redirects to homepage if not logged in
@@ -65,6 +66,7 @@ router.get('/profile', async (req, res) => {
     res.render('profile', {
       listings,
       name: req.session.name,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
