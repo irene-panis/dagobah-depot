@@ -41,6 +41,19 @@ body {
   color: var(--main-font);
 }
 
+.K2-grid li {
+  background: var(--main-background);
+  color: var(--main-font);
+}
+.K2-grid li a {
+  background: var(--main-background);
+  color: var(--main-font);
+}
+.K2-grid li span {
+  background: var(--main-background);
+  color: var(--main-font);
+}
+
 .toggle-switch {
   display: flex;
   flex-direction: row;
