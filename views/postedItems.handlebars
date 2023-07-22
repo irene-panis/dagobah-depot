@@ -1,5 +1,6 @@
 {{!-- Use this file to show posted items --}}
-<div class="text-center">
+
+<div class="flex-column justify-space-around">
   <h2>{{listing.name}}</h2>
   <p>{{{get_emoji}}}</p>
   <p>{{listing.description}}</p>
@@ -7,9 +8,9 @@
   <p>
     <span for="img" aria-label="money">💲</span>
     <span class="dollar-amount">{{listing.price}}</span>
-    needed
   </p>
   <p>
-    <button class="btn btn-primary">Purchase This Item!</button>
+    <button class="btn btn-primary ">Purchase This Item!</button>
   </p>
 </div>
+
