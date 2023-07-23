@@ -22,6 +22,7 @@ const sess = {
     db: sequelize
   })
 };
+
 app.use(session(sess));
 
 app.use(express.json());
@@ -37,36 +38,47 @@ const hbs = exphbs.create();
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-const items = require("./seeds/listingData");
+const { Listing } = require('./models');
 
-app.post("/create-checkout-session", async (req, res) => {
+
+
+app.post("/checkout", async (req, res) => {
   try {
+    const items = req.body.items;
+    const lineItems = [];
+
+    for (const item of items) {
+      const listing = await Listing.findByPk(item.id);
+      if (!listing) {
+        throw new Error(`Listing with id ${item.id} not found.`);
+      }
+
+      lineItems.push({
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: listing.name
+          },
+          unit_amount: listing.price * 100 // Stripe expects the price in cents
+        },
+        quantity: item.quantity
+      });
+    }
+
     const session = await stripe.checkout.sessions.create({
       success_url: 'https://dagobah-depot-34081fe1df5e.herokuapp.com/checkout',
-      cancel_url: '',
-      // create a body for items so that the request can appear here when checking out
-      line_items: req.body.items.map(item => {
-        const storeItem = items.find(item => item.id === item.id);
-        return {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: storeItem.name
-            },
-            unit_amount: storeItem.priceInCents
-          },
-          quantity: item.quantity
-        }
-      }),
+      cancel_url: 'https://dagobah-depot-34081fe1df5e.herokuapp.com/',
+      line_items: lineItems,
       payment_method_types: ['card'],
       mode: 'payment',
     });
-    res.json({ url: session.url })
+
+    res.json({ url: session.url });
   } catch (e) {
-    res.status(500).json({ error: e.message })
+    res.status(500).json({ error: e.message });
   }
 });
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+  app.listen(PORT, () => console.log(`Now listening ${PORT}`));
 });

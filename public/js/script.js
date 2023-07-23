@@ -2,7 +2,7 @@
 
 const button = document.querySelector("button")
 button.addEventListener("click", () => {
-    fetch('http://localhost:3001/create-checkout-session', {
+    fetch('/checkout', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -19,10 +19,6 @@ button.addEventListener("click", () => {
     }).then(({ url }) => {
         console.log(url)
         window.location = url; // Redirects the user to the stripe checkout page 
-
-        if (url.includes('https://dagobah-depot-34081fe1df5e.herokuapp.com/checkout')) {
-          window.location = 'https://dagobah-depot-34081fe1df5e.herokuapp.com/checkout';
-        }
     }).catch(e => {
         console.error(e.error)
     })
