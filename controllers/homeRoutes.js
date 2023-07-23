@@ -48,6 +48,7 @@ router.get('/checkout', async (req, res) => {
   res.render('checkout');
 });
 
+// profile render
 router.get('/profile', async (req, res) => {
   try {
     if (!req.session.logged_in) {
@@ -93,6 +94,12 @@ router.get('/listings/:id', async (req, res) => {
   }
 });
 
+// random number generator so we can pass random to our category renders
+const getRandomNumber = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+};
+
+// for rendering specific categories
 router.get('/category/:id', async (req, res) => {
   try {
     const dbCategoryData = await Listing.findAll({
@@ -112,13 +119,41 @@ router.get('/category/:id', async (req, res) => {
       listing.get({ plain: true })
     );
     listings.reverse();
-    res.render('category', {
+    const random = getRandomNumber(1, 4); // generate random num when page renders
+    res.render('categories', {
       listings,
+      random, // our random number
       user_id: req.session.user_id,
       logged_in: req.session.logged_in
     });
   } catch (err) {
     console.log(err);
+    res.status(500).json(err);
+  }
+});
+
+// for rendering category page listing all items
+router.get('/category', async (req, res) => {
+  try {
+    const dbListingData = await Listing.findAll({
+      include: [
+        {
+          model: User,
+        },
+      ],
+    });
+    const listings = dbListingData.map((listing) =>
+      listing.get({ plain: true })
+    );
+    listings.reverse();
+    const random = getRandomNumber(1, 4);
+    res.render('categories', {
+      listings,
+      random,
+      user_id: req.session.user_id,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
     res.status(500).json(err);
   }
 });

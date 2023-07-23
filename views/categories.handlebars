@@ -1,28 +1,35 @@
 <div class='K2-grid coll-3 icon-p-2'>
-<h2> Choose A Category: </h2>       
-<ul>
-<li>
-    <a href='#' title='All'>
-    <span>All<span></a>
-</li>
-<li>
-    <a href='#' title='Clothing'>
-    <span>Clothing</span></a>
-</li>
-<li>
-    <a href='#' title='Games'>
-    <span>Games</span></a>
-</li>   
-<li>
-    <a href='#' title='Movies/TV'><span>Movies/TV</span></a>
-</li>
-<li>
-    <a href='#' title='Books/Comics'>
-    <span>Books/Comics</span></a>
-</li>
-<li>
-    <a href='#' title='Random'>
-    <span>Random</span></a>
-</li>
-</ul>
+  <h2> Choose A Category: </h2>
+  <ul>
+    <li>
+      <a href='/category' title='All'>
+        <span>All<span></a>
+    </li>
+    <li>
+      <a href='/category/1' title='Clothing'>
+        <span>Clothing</span></a>
+    </li>
+    <li>
+      <a href='/category/2' title='Games'>
+        <span>Games</span></a>
+    </li>
+    <li>
+      <a href='/category/3' title='Movies/TV'><span>Movies/TV</span></a>
+    </li>
+    <li>
+      <a href='/category/4' title='Books/Comics'>
+        <span>Books/Comics</span></a>
+    </li>
+    <li>
+      <a href='/category/{{random}}' title='Random'>
+        <span>Random</span></a>
+    </li>
+  </ul>
+</div>
+<div class="content">
+  {{#each listings as |listing|}}
+  <div>
+    <h2>{{listing.name}}</h2>
+  </div>
+  {{/each}}
 </div>
