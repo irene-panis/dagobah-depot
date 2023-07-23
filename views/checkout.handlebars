@@ -1,12 +1,13 @@
 <!-- this page is only for testing -->
 <div class="row">
-  <div class="col-md-6">
-    <h2>Checkout</h2>
-
-<body>
-    <button type="button">click me!</button>
-
-
-    <script src="../public/js/script.js"></script>
-</body>
-  
+  {{#each listings as |listing|}}
+    <div class="col-md-6">
+      <h2>Checkout</h2>
+      <h2>{{listing.name}}</h2>
+      <p>{{listing.description}}</p>
+      <p>Price: ${{listing.price}}</p>
+      <button class="checkout-btn" data-id="{{listing.id}}">Ready for purchase</button>
+    </div>
+  {{/each}}
+  <script src="../public/js/script.js"></script>
+</div>

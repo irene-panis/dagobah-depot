@@ -41,8 +41,8 @@ app.set('view engine', 'handlebars');
 const { Listing } = require('./models');
 
 
-
-app.post("/checkout", async (req, res) => {
+//post request to get the /checkout-session to the stripe page
+app.post("/checkout-session", async (req, res) => {
   try {
     const items = req.body.items;
     const lineItems = [];
@@ -66,8 +66,8 @@ app.post("/checkout", async (req, res) => {
     }
 
     const session = await stripe.checkout.sessions.create({
-      success_url: 'https://dagobah-depot-34081fe1df5e.herokuapp.com/checkout',
-      cancel_url: 'https://dagobah-depot-34081fe1df5e.herokuapp.com/',
+      success_url: 'https://dagobah-depot-34081fe1df5e.herokuapp.com/',
+      cancel_url: 'https://dagobah-depot-34081fe1df5e.herokuapp.com/checkout',
       line_items: lineItems,
       payment_method_types: ['card'],
       mode: 'payment',

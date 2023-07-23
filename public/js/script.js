@@ -1,8 +1,8 @@
 // this page js is for testing 
 
-const button = document.querySelector("button")
+const button = document.querySelector("checkout-btn")
 button.addEventListener("click", () => {
-    fetch('/checkout', {
+    fetch('/checkout-session', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
