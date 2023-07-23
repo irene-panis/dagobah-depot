@@ -28,8 +28,23 @@
 </div>
 <div class="content">
   {{#each listings as |listing|}}
-  <div>
-    <h2>{{listing.name}}</h2>
+  <div class="row mb-4 project">
+  <div class="col-md-5">
+    <h2>
+      <a href="/listings/{{listing.id}}">{{listing.name}}</a>
+    </h2>
+    <p>
+      <span for="img" aria-label="money">💲</span>
+      <!-- Pass needed_funding value to the helper function --> 
+      <span class="dollar-amount">{{listing.price}}</span>
+    </p>
+    <p>Created by {{listing.user.name}} on {{listing.upload_date}}</p>
   </div>
+  <div class="col-md-7">
+    <p>
+      {{listing.description}}
+    </p>
+  </div>
+</div>
   {{/each}}
 </div>

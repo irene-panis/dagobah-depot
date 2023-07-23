@@ -5,7 +5,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dagobah Depot</title>
-    <link href="https://fonts.cdnfonts.com/css/starkiller" rel="stylesheet">            
+    <link href="https://fonts.cdnfonts.com/css/starkiller" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">            
     <link rel="stylesheet" href="/css/style.css">
     <link rel="stylesheet" href="/css/jass.css">
     <link rel="stylesheet" href="/css/slider.css">
@@ -22,18 +23,20 @@
         <a href="/">Dagobah Depot</a>
       </h1>
         <!-- Conditionally render login or logout links -->
-<div class="nav">
+<div class="nav" id="myTopNav">
         <label for="toggle" class="navi">&#9776;</label>
         <input type="checkbox" id="toggle"/>
         <div class="menu">
           {{#if logged_in}}
+            <a href="javascript:void(0);" class="icon" onclick="myFunction()">
+            <i class="fa fa-bars"></i></a>
             <a href="/profile">Profile</a> 
             <a href="/category">Categories</a> 
             <a href="/checkout">Checkout</a> 
             <button class="no-button" id="logout">Logout</button>
           {{else}}
             <a href="/login">Login</a> 
-            <a href="/signup">Sign Up</a> 
+            <a href="/signup">Sign Up</a>
           {{/if}}
         </div>
     </div>
@@ -65,7 +68,7 @@
   {{/if}}
   {{!-- darkmode switch --}}
   <script src="/js/darkmode.js"></script>
-
+  <script src="/js/navbar.js"></script>
 </body>
 
 </html>

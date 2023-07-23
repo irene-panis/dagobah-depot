@@ -13,7 +13,7 @@
 
   https://opensource.org/licenses/MIT
   ## Description
-  
+  This app was made to be a marketplace app where users can post their own items for sale. Users are then able to purchase items posted by others.
   ## Dependencies
   dotenv, express, mysql2, Sequelize, bycrpt, express-handlebars, connection-session-sequelize, expresss-session
   ## Features
@@ -21,7 +21,7 @@
   ## API-Endpoints
 
   ## Screen-Shot
-
+![Screenshot (114)](https://github.com/EgRoku/Portfolio-Project/assets/125640560/a88768bf-2a17-4196-88f8-47d65a2c28e2)
   ## Video
 
   ## Usage
@@ -34,7 +34,6 @@
   ## Github-Contributors
    * Github - [superfeeeelix](https://github.com/superfeeeelix/)
    * Github - [EgRoku](https://github.com/EgRoku)
-   * Github - [](https://github.com/)
    * Github - [irene-panis](https://github.com/irene-panis)
  
 
