@@ -57,12 +57,14 @@ router.get('/checkout', async (req, res) => {
   }
 });
 
+
 // profile render
 router.get('/profile', async (req, res) => {
   try {
     if (!req.session.logged_in) {
       res.redirect('/'); // redirects to homepage if not logged in
     }
+
     const dbListingData = await Listing.findAll({
       where: {
         seller_id: req.session.user_id,
@@ -75,6 +77,7 @@ router.get('/profile', async (req, res) => {
     res.render('profile', {
       listings,
       name: req.session.name,
+
       logged_in: req.session.logged_in,
     });
   } catch (err) {
@@ -161,6 +164,7 @@ router.get('/category', async (req, res) => {
       random,
       user_id: req.session.user_id,
       logged_in: req.session.logged_in,
+
     });
   } catch (err) {
     res.status(500).json(err);

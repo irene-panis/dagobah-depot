@@ -1,8 +1,8 @@
 // this page js is for testing 
 
-const button = document.querySelector("button")
+const button = document.querySelector("checkout-btn")
 button.addEventListener("click", () => {
-    fetch('http://localhost:3001/create-checkout-session', {
+    fetch('/checkout-session', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -18,8 +18,10 @@ button.addEventListener("click", () => {
         return res.json().then(json => Promise.reject(json))
     }).then(({ url }) => {
         console.log(url)
-        window.location = url
+        window.location = url; // Redirects the user to the stripe checkout page 
     }).catch(e => {
         console.error(e.error)
     })
 })
+
+

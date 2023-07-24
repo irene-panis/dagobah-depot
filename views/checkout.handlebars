@@ -1,10 +1,13 @@
 <!-- this page is for when in posted items, they press "purchase this item" -->
 <div class="row">
-  <div class="col-md-6">
-    <h2>Checkout</h2>
-
-  <button class="btn btn-primary">click me!</button>
-
-<script src="/js/script.js"></script>
-
-
+  {{#each listings as |listing|}}
+    <div class="col-md-6">
+      <h2>Checkout</h2>
+      <h2>{{listing.name}}</h2>
+      <p>{{listing.description}}</p>
+      <p>Price: ${{listing.price}}</p>
+      <button class="checkout-btn" data-id="{{listing.id}}">Ready for purchase</button>
+    </div>
+  {{/each}}
+  <script src="/js/script.js"></script>
+</div>

@@ -6,8 +6,6 @@ const session = require('express-session');
 const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
-const bycrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
 
 const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
 
@@ -24,6 +22,7 @@ const sess = {
     db: sequelize
   })
 };
+
 app.use(session(sess));
 
 app.use(express.json());
@@ -34,104 +33,53 @@ app.use(express.static("js"));
 
 app.use(routes);
 
-app.post('/register', async (req,res) => {
-    try {
-        const { email, password } = req.body
-
-        const hashedPassword = await bycrypt.hash(password, 10);
-
-        await User.create({
-            email,
-            password: hashedPassword,
-        });
-        res.status(201).json({ message: 'User registered Successfully' });
-    } catch (error) {
-        res.status(500).json({ error: 'Error registered user' });
-    }
-})
-
-app.post('/login', async (req, res) => {
-    try {
-        const { email, password } = req.body;
-
-        const user = await User.findOne({ where: {email } });
-
-        if(!User) {
-            return res.status(401).json({error: 'Invalid email or password Young Padawan'});
-        }
-
-        const passwordMatch = await bycrypt.compare(password, user.password);
-        if(!passwordMatch) {
-            return(401).json({error: 'Invalid Email or password Young Padawan'});
-        }
-
-        //generate a jwt key 
-        const token = jwt.sign({ userId: user.id }, 'secret key will go here when created irene', {expiresIn: '1h'});
-
-        //sends the token to the client 
-        res.json({ token });
-    } catch (error) {
-        res.status(500).json({ error: 'Error Logging in Young Padawan'});
-    }
-});
-
-app.get('/protected', authenticateToken, (res, req) => {
-    res.json({ message: 'You have access to this protected route' });
-});
-
-function authenticateToken(req, res, next) {
-    const token = req.header('Authorization');
-
-    if(!token) {
-        return res.status(401).json({ error: 'Unauthorized '});
-    }
-
-    jwt.verify(token, ' secret key will go here when created irene', (err, decodedToken) => {
-        if (err) {
-            return res.status(401).json({ error: 'Unauthorized '});
-        }
-
-        res.userId = decodedToken.userId;
-        next();
-    })
-}
-
-
 
 const hbs = exphbs.create();
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
-const items = require("./seeds/listingData");
+const { Listing } = require('./models');
 
-app.post("/create-checkout-session", async (req, res) => {
+
+//post request to get the /checkout-session to the stripe page
+app.post("/checkout-session", async (req, res) => {
   try {
-    const session = await stripe.checkout.sessions.create({
-      success_url: 'http://localhost:3001',
-      // create a body for items so that the request can appear here when checking out
-      line_items: req.body.items.map(item => {
-        const storeItem = items.find(item => item.id === item.id);
-        return {
-          price_data: {
-            currency: 'usd',
-            product_data: {
-              name: storeItem.name
-            },
-            unit_amount: storeItem.priceInCents
+    const items = req.body.items;
+    const lineItems = [];
+
+    for (const item of items) {
+      const listing = await Listing.findByPk(item.id);
+      if (!listing) {
+        throw new Error(`Listing with id ${item.id} not found.`);
+      }
+
+      lineItems.push({
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: listing.name
           },
-          quantity: item.quantity
-        }
-      }),
+          unit_amount: listing.price * 100 // Stripe expects the price in cents
+        },
+        quantity: item.quantity
+      });
+    }
+
+    const session = await stripe.checkout.sessions.create({
+      success_url: 'https://dagobah-depot-34081fe1df5e.herokuapp.com/',
+      cancel_url: 'https://dagobah-depot-34081fe1df5e.herokuapp.com/checkout',
+      line_items: lineItems,
       payment_method_types: ['card'],
       mode: 'payment',
     });
-    res.json({ url: session.url })
+
+    res.json({ url: session.url });
   } catch (e) {
-    res.status(500).json({ error: e.message })
+    res.status(500).json({ error: e.message });
   }
 });
 
 sequelize.sync({ force: false }).then(() => {
-  app.listen(PORT, () => console.log('Now listening'));
+  app.listen(PORT, () => console.log(`Now listening ${PORT}`));
 });
