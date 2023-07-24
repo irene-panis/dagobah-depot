@@ -1,6 +1,6 @@
 // this page js is for testing 
 
-const button = document.querySelector("checkout-btn")
+const button = document.querySelector(".checkout-btn")
 button.addEventListener("click", () => {
     fetch('https://dagobah-depot-34081fe1df5e.herokuapp.com/checkout-session', {
         method: 'POST',
