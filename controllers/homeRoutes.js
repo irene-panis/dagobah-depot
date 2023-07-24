@@ -42,24 +42,6 @@ router.get('/signup', async (req, res) => {
   res.render('signup');
 });
 
-/*
-// renders checkout page
-router.get('/checkout', async (req, res) => {
-  try {
-    const itemId = req.query.listing; // grabs listing id we stored in the form
-    const itemData = await Listing.findByPk(itemId); // uses id in findByPk
-    const item = itemData.get({ plain: true });
-    res.render('checkout', {
-      item,
-      logged_in: req.session.logged_in,
-    });
-  } catch (err) {
-    res.status(500).json(err);
-  }
-});
-*/
-
-
 // profile render
 router.get('/profile', async (req, res) => {
   try {
