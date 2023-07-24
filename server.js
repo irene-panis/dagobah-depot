@@ -57,13 +57,15 @@ app.post("/checkout-session", async (req, res) => {
         throw new Error(`Listing with id ${item.id} not found.`);
       }
 
+      const priceInCents = listing.price * 100;
+
       lineItems.push({
         price_data: {
           currency: 'usd',
           product_data: {
             name: listing.name
           },
-          unit_amount: listing.price * 100 // Stripe expects the price in cents
+          unit_amount: parseFloat(priceInCents.toFixed(2)), // Stripe expects the price in cents, round
         },
         quantity: item.quantity
       });
