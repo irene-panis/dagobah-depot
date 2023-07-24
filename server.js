@@ -7,7 +7,7 @@ const exphbs = require('express-handlebars');
 const routes = require('./controllers');
 const sequelize = require('./config/connection');
 
-const stripe = require('stripe')(process.env.STRIPE_PRIVATE_KEY);
+const stripe = require('stripe')(process.env.STRIPE_KEY);
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -47,6 +47,7 @@ app.post("/checkout-session", async (req, res) => {
   try {
     const items = req.body.items;
     const lineItems = [];
+    const itemId = items[0];
 
     for (const item of items) {
       const listing = await Listing.findByPk(item.id);
@@ -68,7 +69,7 @@ app.post("/checkout-session", async (req, res) => {
 
     const session = await stripe.checkout.sessions.create({
       success_url: 'https://dagobah-depot-34081fe1df5e.herokuapp.com/',
-      cancel_url: 'https://dagobah-depot-34081fe1df5e.herokuapp.com/checkout',
+      cancel_url: `https://dagobah-depot-34081fe1df5e.herokuapp.com/listings/${itemId}`,
       line_items: lineItems,
       payment_method_types: ['card'],
       mode: 'payment',
