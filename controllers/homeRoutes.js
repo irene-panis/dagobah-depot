@@ -42,6 +42,7 @@ router.get('/signup', async (req, res) => {
   res.render('signup');
 });
 
+/*
 // renders checkout page
 router.get('/checkout', async (req, res) => {
   try {
@@ -56,6 +57,7 @@ router.get('/checkout', async (req, res) => {
     res.status(500).json(err);
   }
 });
+*/
 
 
 // profile render
