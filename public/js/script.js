@@ -1,6 +1,9 @@
 // this page js is for testing 
 
-const button = document.querySelector(".purchase-btn")
+const button = document.querySelector(".purchase-btn");
+const url = window.location.href;
+const itemId = url.charAt(url.length - 1);
+
 button.addEventListener("click", () => {
     fetch('https://dagobah-depot-34081fe1df5e.herokuapp.com/checkout-session', {
         method: 'POST',
@@ -9,8 +12,7 @@ button.addEventListener("click", () => {
         },
         body: JSON.stringify({
             items:[
-                { id: 1, quantity: 3 },
-                { id: 2, quantity: 1 }
+                { id: itemId, quantity: 1 },
             ]
         })
     }).then(res => {
