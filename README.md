@@ -3,8 +3,6 @@
   ## Table Of Contents
   * [Description](#description)
   * [Dependencies](#dependencies)
-  * [Features](#features)
-  * [API-Endpoints](#api-endpoints)
   * [Screen-Shot](#screen-shot)
   * [Video](#video)
   * [Usage](#usage)
@@ -13,23 +11,27 @@
 
   https://opensource.org/licenses/MIT
   ## Description
-  This app was made to be a marketplace app where users can post their own items for sale. Users are then able to purchase items posted by others.
-  ## Dependencies
-  dotenv, express, mysql2, Sequelize, bycrpt, express-handlebars, connection-session-sequelize, expresss-session
-  ## Features
- 
-  ## API-Endpoints
+ Dagobah Depot is a user-friendly platform that empowers individuals to buy and sell items within a vibrant community. Whether you're a creative artist, a tech enthusiast, or a vintage collector, this app offers a seamless experience to showcase and purchase unique products.
 
+Selling on the platform is a breeze! Users can easily create listings for their items, providing captivating images and comprehensive descriptions to attract potential buyers. Each listing is tagged with a competitive price, ensuring a fair and transparent marketplace for everyone.
+
+On the other hand, buyers can browse through a diverse range of products and discover hidden gems. Whether it's handmade crafts, cutting-edge electronics, or rare collectibles, our app caters to all interests. Users can interact with sellers, ask questions, and make secure payments, ensuring a smooth and trustworthy shopping experience.
+
+The app is designed with a user-first approach, ensuring intuitive navigation and responsive design across devices. With features like search filters, personalized recommendations, and a user-friendly cart, finding and buying items is a joy.
+
+We take pride in fostering a vibrant community of sellers and buyers, encouraging interaction, feedback, and support. Our app is not just a marketplace; it's a space for creativity, connections, and commerce.
+
+Join our marketplace app today and unlock a world of possibilities. Whether you're a seasoned seller or a curious shopper, we invite you to be part of our thriving Dagobah Depot community and experience the joy of buying and selling unique products!
+
+  ## Dependencies
+  dotenv, express, mysql2, Sequelize, express-handlebars, connection-session-sequelize, expresss-session, Stripe, bcrypt. 
+ 
   ## Screen-Shot
 ![Screenshot (114)](https://github.com/EgRoku/Portfolio-Project/assets/125640560/a88768bf-2a17-4196-88f8-47d65a2c28e2)
   ## Video
 
   ## Usage
-  Node.js, Express.js, and Sequelize as the ORM for interacting with the MySql database
-  1. Install the necessary dependencies by running `npm install`
-  2. configure the database connection by providing the required environment variables in a `.env` file
-  3. Run database migrations and seeders by executing `npm run seed` to create and populate the required database tables.
-  4. Start the server by running `npm run start`
+
 
   ## Github-Contributors
    * Github - [superfeeeelix](https://github.com/superfeeeelix/)
