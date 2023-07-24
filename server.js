@@ -48,6 +48,8 @@ app.post("/checkout-session", async (req, res) => {
     const items = req.body.items;
     const lineItems = [];
     const itemId = items[0];
+    console.log(items);
+    console.log(itemId);
 
     for (const item of items) {
       const listing = await Listing.findByPk(item.id);
@@ -69,7 +71,7 @@ app.post("/checkout-session", async (req, res) => {
 
     const session = await stripe.checkout.sessions.create({
       success_url: 'https://dagobah-depot-34081fe1df5e.herokuapp.com/',
-      cancel_url: `https://dagobah-depot-34081fe1df5e.herokuapp.com/listings/${itemId}`,
+      cancel_url: `https://dagobah-depot-34081fe1df5e.herokuapp.com/`,
       line_items: lineItems,
       payment_method_types: ['card'],
       mode: 'payment',
