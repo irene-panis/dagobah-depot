@@ -20,7 +20,7 @@ Listing.init(
       allowNull: false,
     },
     price: {
-      type: DataTypes.DECIMAL(5, 2),
+      type: DataTypes.DECIMAL(7, 2),
       allowNull: false,
     },
     upload_date: {

@@ -1,0 +1,50 @@
+<div class='K2-grid coll-3 icon-p-2'>
+  <h2> Choose A Category: </h2>
+  <ul>
+    <li>
+      <a href='/category' title='All'>
+        <span>All<span></a>
+    </li>
+    <li>
+      <a href='/category/1' title='Clothing'>
+        <span>Clothing</span></a>
+    </li>
+    <li>
+      <a href='/category/2' title='Games'>
+        <span>Games</span></a>
+    </li>
+    <li>
+      <a href='/category/3' title='Movies/TV'><span>Movies/TV</span></a>
+    </li>
+    <li>
+      <a href='/category/4' title='Books/Comics'>
+        <span>Books/Comics</span></a>
+    </li>
+    <li>
+      <a href='/category/{{random}}' title='Random'>
+        <span>Random</span></a>
+    </li>
+  </ul>
+</div>
+<div class="content">
+  {{#each listings as |listing|}}
+  <div class="row mb-4 project">
+  <div class="col-md-5">
+    <h2>
+      <a href="/listings/{{listing.id}}">{{listing.name}}</a>
+    </h2>
+    <p>
+      <span for="img" aria-label="money">💲</span>
+      <!-- Pass needed_funding value to the helper function --> 
+      <span class="dollar-amount">{{listing.price}}</span>
+    </p>
+    <p>Created by {{listing.user.name}} on {{listing.upload_date}}</p>
+  </div>
+  <div class="col-md-7">
+    <p>
+      {{listing.description}}
+    </p>
+  </div>
+</div>
+  {{/each}}
+</div>
