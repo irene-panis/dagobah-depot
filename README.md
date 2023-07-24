@@ -23,6 +23,15 @@ We take pride in fostering a vibrant community of sellers and buyers, encouragin
 
 Join our marketplace app today and unlock a world of possibilities. Whether you're a seasoned seller or a curious shopper, we invite you to be part of our thriving Dagobah Depot community and experience the joy of buying and selling unique products!
 
+  ## Usage
+Users are met with all listings on the homepage; each listing is clickable which will take them to the individual product page and allow them to start checkout. Users can optionally sign up and/or login, which will take them to their profile -- a page where all their products listed are gathered, and where they can add more products that they want to sell.
+
+The "Categories" tab becomes visible upon logging in, and this is a page in which users may browse the existing listings by category. There is a button for a random category as well, which will redirect the user to a category chosen at random.
+
+At the bottom of the page, users can set their choice between Light Mode and Dark Mode, with their preference being saved in local storage.
+
+LIVE: https://dagobah-depot-34081fe1df5e.herokuapp.com/ 
+
   ## Dependencies
   dotenv, express, mysql2, Sequelize, express-handlebars, connection-session-sequelize, expresss-session, Stripe, bcrypt. 
  
@@ -30,10 +39,6 @@ Join our marketplace app today and unlock a world of possibilities. Whether you'
 ![Screenshot (114)](https://github.com/EgRoku/Portfolio-Project/assets/125640560/a88768bf-2a17-4196-88f8-47d65a2c28e2)
   ## Video
 [Untitled_ Jul 24, 2023 3_45 PM.webm](https://github.com/irene-panis/dagobah-depot/assets/65985104/57074e6c-6b3c-48d9-8317-687ecc4b6afd)
-
-
-  ## Usage
-
 
   ## Github-Contributors
    * Github - [superfeeeelix](https://github.com/superfeeeelix/)
