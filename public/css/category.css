@@ -1,0 +1,49 @@
+
+
+    .K2-grid {
+      padding: 5px;
+      text-align: center;
+  }
+  
+  .K2-grid ul {
+      clear: both;
+      margin: 15px 0 20px;
+      padding:0;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+  }
+  
+  .coll-3 ul li {
+      width: 30%;
+  }
+  
+  .K2-grid li {
+      font-size: 0.9em;
+      font-weight: 500;
+      line-height: 1.3em;
+      text-align: center;
+      /* background: var(--toggle-light); */
+      border-radius: 5px;
+      margin: 5px 0;
+      box-sizing: border-box;
+      box-shadow: rgb(0 0 0 / 24%) 0px 3px 8px;
+      padding: 10px 0 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  .K2-grid li a {
+      display: block;
+      text-decoration: none;
+      /* color: #333; */
+  }
+  
+  .K2-grid li span {
+      display: block;
+      padding: 0 3px;
+      /* color: black; */
+  }
+
