@@ -2,7 +2,9 @@
 
 const button = document.querySelector(".purchase-btn");
 const url = window.location.href;
-const itemId = url.charAt(url.length - 1);
+const parts = url.split('/');
+const listingsIndex = parts.indexOf("listings");
+const itemId = parts[listingsIndex + 1];
 
 button.addEventListener("click", () => {
     fetch('https://dagobah-depot-34081fe1df5e.herokuapp.com/checkout-session', {
